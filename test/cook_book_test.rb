@@ -29,27 +29,16 @@ class CookBookTest < Minitest::Test
     assert_equal [], @cookbook.recipes
   end
 
-  def test_ingredient_info
+  def test_it_can_add_recipes
     @cookbook.add_recipe(@mac_and_cheese)
-    # require 'pry'; binding.pry
+    @cookbook.add_recipe(@burger)
 
-    expected = [
-      {
-        :ingredient => "Macaroni",
-        :amount => "8 oz"
-      },
-      {
-        :ingredient => "Cheese",
-        :amount => "2 C"
-      }
-    ]
-
-    assert_equal expected, @cookbook.ingredient_info
+    assert_equal [@mac_and_cheese, @burger], @cookbook.recipes
   end
 
-  def test_ingredient_total_cal_info
+  def test_mid_info
     @cookbook.add_recipe(@mac_and_cheese)
-    
+
     expected = {
       :ingredients =>[
         {
@@ -64,7 +53,7 @@ class CookBookTest < Minitest::Test
       :total_calories => 440
     }
 
-    assert_equal expected, @cookbook.ingredient_total_cal_info
+    assert_equal expected, @cookbook.mid_info
   end
 
   def test_summary
@@ -108,5 +97,7 @@ class CookBookTest < Minitest::Test
         }
       }
     ]
+
+    assert_equal expected, @cookbook.summary
   end
 end
