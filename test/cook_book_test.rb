@@ -36,31 +36,9 @@ class CookBookTest < Minitest::Test
     assert_equal [@mac_and_cheese, @burger], @cookbook.recipes
   end
 
-  def test_mid_info
-    @cookbook.add_recipe(@mac_and_cheese)
-
-    expected = {
-      :ingredients =>[
-        {
-          :ingredient => "Macaroni",
-          :amount => "8 oz"
-        },
-        {
-          :ingredient => "Cheese",
-          :amount => "2 C"
-        }
-      ],
-      :total_calories => 440
-    }
-
-    assert_equal expected, @cookbook.mid_info
-  end
-
   def test_summary
-    skip
     @cookbook.add_recipe(@mac_and_cheese)
     @cookbook.add_recipe(@burger)
-
 
     expected = [
       {

@@ -11,32 +11,28 @@ class CookBook
   end
 
   def summary
-    sum = Hash.new
+    result = []
 
     @recipes.each do |recipe|
-      sum[:name] = recipe.name
-      sum[:details] = mid_info
-    end
+      sum = Hash.new
+      ingredients = []
 
-    [sum]
-  end
-
-  def mid_info
-    mid_sum = Hash.new
-    ingredients = []
-
-    @recipes.each do |recipe|
       recipe.ingredients_required.each do |ing, amt|
+        sum[:name] = recipe.name
+
         ing_info = Hash.new
         ing_info[:ingredient] = ing.name
         ing_info[:amount] = amt.to_s + " " + ing.unit
         ingredients << ing_info
       end
 
+      mid_sum = Hash.new
       mid_sum[:ingredients] = ingredients
       mid_sum[:total_calories] = recipe.total_calories
+      sum[:details] = mid_sum
+      result << sum
     end
-    mid_sum
+    result
   end
 
 end
