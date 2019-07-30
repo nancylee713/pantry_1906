@@ -25,8 +25,9 @@ class CookBook
 
     @recipes.each do |recipe|
       mid_sum[:ingredients] = ingredient_info
-      mid_sum[:total_calories] = total_calories
+      mid_sum[:total_calories] = recipe.total_calories
     end
+    mid_sum
   end
 
   def ingredient_info
